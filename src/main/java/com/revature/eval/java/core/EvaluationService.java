@@ -1,7 +1,10 @@
 package com.revature.eval.java.core;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
+
 
 public class EvaluationService {
 
@@ -22,7 +25,11 @@ public class EvaluationService {
 
 		public static long toMilesPerHour(double kilometersPerHour) {
 			// TODO Write an implementation for this method declaration
-			return 0;
+			if (kilometersPerHour < 0) {
+				return -1;
+			}else {
+				return Math.round(kilometersPerHour * 0.62137119223733 );
+			}
 		}
 
 		/**
@@ -42,7 +49,12 @@ public class EvaluationService {
 		 */
 		public static String printConversion(double kilometersPerHour) {
 			// TODO Write an implementation for this method declaration
-			return null;
+			if (kilometersPerHour < 0) {
+				return ("Invalid Value");
+			} else {
+				long miles = Math.round(kilometersPerHour * 0.62137119223733);
+				return (kilometersPerHour + " km/h = " + miles + " mi/h");
+			}
 		}
 	}
 
@@ -67,8 +79,14 @@ public class EvaluationService {
 	 * Value".
 	 */
 	public String printMegaBytesAndKiloBytes(int XX) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		if (XX < 0) {
+			return "Invalid Value";
+		}else {
+			int ZZ = (XX % 1024);
+			int YY = ((XX - ZZ)/1024);
+			return (XX + " KB = " + YY + " MB and " + ZZ + " KB");
+		}
+		
 	}
 
 	/**
@@ -92,7 +110,16 @@ public class EvaluationService {
 	 */
 	public boolean shouldWakeUp(boolean isBarking, int hourOfDay) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		if (hourOfDay < 0 || hourOfDay > 23) {
+			return false;
+		}else {
+			if (isBarking == true && (hourOfDay < 8 || hourOfDay > 22)) {
+				return true;
+			}else {
+				return false;
+			}
+			
+		}
 	}
 
 	/**
@@ -106,10 +133,28 @@ public class EvaluationService {
 	 * 
 	 * Otherwise, return false;
 	 */
+	
+	
 	public boolean areEqualByThreeDecimalPlaces(double firstNum, double secondNum) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		DecimalFormat df = new DecimalFormat("#.000");
+		df.setRoundingMode(RoundingMode.DOWN);
+		
+		String a1 = df.format((firstNum));
+		String b1 = df.format((secondNum));
+		
+		double a2 = Double.parseDouble(a1);
+		double b2 = Double.parseDouble(b1);
+		
+		if (a2 == b2) {
+			return true;
+		}else {
+			return false;
+		}
+		
+		
 	}
+	
 
 	/**
 	 * 5. Teen Number Checker
