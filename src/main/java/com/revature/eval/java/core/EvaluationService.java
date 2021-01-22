@@ -372,7 +372,15 @@ public class EvaluationService {
 	 */
 	public String reverse(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		// Initialize List and String Array then iterate through Array and add to List
+		List<String> reversedString = new ArrayList<String>();
+		String arr[] = string.split("");
+		
+		for (int i = (arr.length - 1); i >= 0; i--) {
+			reversedString.add(arr[i]);
+		}
+		
+		return String.join("", reversedString);
 	}
 
 	/**
@@ -384,7 +392,24 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		// Create an Array List and a Regular Expression that matches whitespace and hyphens
+		List<String> finAcronym = new ArrayList<String>();
+		String regex = "\s+|-+";
+		
+		// Split the given String twice to create an Array within an Array and then add the first letter
+		// of each Array into the list
+		
+		String cutAcro[] = phrase.split(regex);
+		
+		for (int i = 0; i < cutAcro.length; i++) {
+			String cutAcroAgain[] = cutAcro[i].split("");
+			
+			finAcronym.add(cutAcroAgain[0]);
+		}
+		
+		// Join the final List Array and capitalize all of the letters within it
+		return(String.join("", finAcronym).toUpperCase());
+		
 	}
 
 	/**
