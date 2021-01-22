@@ -2,6 +2,8 @@ package com.revature.eval.java.core;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -110,6 +112,7 @@ public class EvaluationService {
 	 */
 	public boolean shouldWakeUp(boolean isBarking, int hourOfDay) {
 		// TODO Write an implementation for this method declaration
+		
 		if (hourOfDay < 0 || hourOfDay > 23) {
 			return false;
 		}else {
@@ -137,6 +140,8 @@ public class EvaluationService {
 	
 	public boolean areEqualByThreeDecimalPlaces(double firstNum, double secondNum) {
 		// TODO Write an implementation for this method declaration
+		
+		// Use DecimalFormat and set it to round down to determine if the values are equal up to three decimal places
 		DecimalFormat df = new DecimalFormat("#.000");
 		df.setRoundingMode(RoundingMode.DOWN);
 		
@@ -170,17 +175,28 @@ public class EvaluationService {
 
 		public static boolean hasTeen(int x, int y, int z) {
 			// TODO Write an implementation for this method declaration
-			return false;
+			if (isTeen(x) == true || isTeen(y) == true || isTeen(z) == true) {
+				return true;
+			}else {
+				return false;
+			}
 		}
 
 		// We can initialize isTeen method first
 		// Then pass the parameter to hasTeen method
+		
+		// Use isTeen method to find if the value is a teen and then implement this in hasTeen
 
 		public static boolean isTeen(int number) {
 			// TODO Write an implementation for this method declaration
-			return false;
+			if (number >= 13 && number <= 19) {
+				return true;
+			}else {
+				return false;
+			}
 		}
-	}
+		
+		}
 
 	/**
 	 * 6. Minutes To Years and Days Calculator
@@ -199,9 +215,17 @@ public class EvaluationService {
 	 */
 	public String printYearsAndDays(long minutes) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		if (minutes < 0) {
+			return ("Invalid Value");
+		}else {
+			// calculate number of days and years from minutes
+			Long XX = minutes;
+			Long ZZ = (minutes % 525600)/1440;
+			Long YY = ((minutes - ZZ) / 525600);
+			
+			return (XX + " min = " + YY + " y and " + ZZ + " d");
+		}
 	}
-
 	/**
 	 * 7. Number In Word
 	 * 
@@ -213,7 +237,33 @@ public class EvaluationService {
 	 */
 	public String printNumberInWord(int number) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		// using a switch statement
+		
+		switch(number) {
+		case 0 : return("ZERO");
+		
+		case 1 : return ("ONE");
+		
+		case 2 : return ("TWO");
+		
+		case 3 : return ("THREE");
+		
+		case 4 : return ("FOUR");
+		
+		case 5 : return ("FIVE");
+		
+		case 6 : return ("SIX");
+		
+		case 7 : return ("SEVEN");
+		
+		case 8 : return ("EIGHT");
+		
+		case 9 : return ("NINE");
+		
+		default : return ("OTHER");
+		
+		}
+		
 	}
 
 	/**
@@ -237,7 +287,51 @@ public class EvaluationService {
 	 */
 	public int getGreatestCommonDivisor(int first, int second) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		// First check if values are less than 10
+		if (first < 10 || second < 10) {
+			return (-1);
+		}else {
+			// Initialize variables and lists
+			int a;
+			int b;
+			int c;
+			List<Integer> arr1 = new ArrayList<Integer>();
+			List<Integer> arr2 = new ArrayList<Integer>();
+			List<Integer> arr3 = new ArrayList<Integer>();
+			
+			// Assign "a" to the larger of the two integers and assign "c" to the value of "a" so that a can be used later
+			// and will not be subtracted from
+			
+			if (first > second) {
+				a = first;
+				b = second;
+			}else {
+				a = second;
+				b = first;
+			}
+			c = a;
+			
+			// Create Lists that store values needed to find the GCD
+			while (c > 0) {
+				arr1.add(c);
+				c--;	
+			}
+				
+			for (Integer n : arr1) {
+				if (a % n == 0 && n != a) {
+					arr2.add(n);
+				}
+			}
+			
+			for (Integer nums : arr2 ) {
+				if (b % nums == 0) {
+					arr3.add(nums);	
+				}
+			}
+			// Find the max of the possible divisors
+				int max = Collections.max(arr3);
+				return max;		
+		}
 	}
 
 	/**
@@ -255,7 +349,19 @@ public class EvaluationService {
 	 */
 	public int sumFirstAndLastDigit(int num) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		if (num < 0) {
+			return (-1);
+		}else {
+			// Convert the integer into a String and then into an Array
+			String numStr = Integer.toString(num);
+			String arr[] = numStr.split("");
+			int first =  Integer.parseInt(arr[0]);
+			int second = Integer.parseInt(arr[arr.length - 1]);
+			return (first + second);
+			
+		}
+		
+		
 	}
 
 	/**
