@@ -465,17 +465,37 @@ public class EvaluationService {
 
 		public boolean isEquilateral() {
 			// TODO Write an implementation for this method declaration
-			return false;
+			if (getSideOne() == getSideTwo() && getSideTwo() == getSideThree()) {
+				return true;
+			}else {
+				return false;
+			}
 		}
 
 		public boolean isIsosceles() {
 			// TODO Write an implementation for this method declaration
-			return false;
+			double a = getSideOne();
+			double b = getSideTwo();
+			double c = getSideThree();
+			
+			if (a == b && c != b) {
+				return true;
+			} else if (a == c && b != c) {
+				return true;
+			}else if (b == c && a != c) {
+				return true;
+			}else {
+				return false;
+			}
 		}
 
 		public boolean isScalene() {
 			// TODO Write an implementation for this method declaration
-			return false;
+			if (getSideOne() != getSideTwo() && getSideTwo() != getSideThree() && getSideOne() != getSideThree()) {
+				return true;
+			}else {
+				return false;
+			}
 		}
 
 	}
@@ -496,7 +516,48 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		// create score counter and create one Array for the possible values and another from the given String
+		int counter = 0;
+		
+		String[][] letters = {
+				{"A", "E", "I", "O", "U", "L", "N", "R", "S", "T"}, 
+				{"D", "G"},
+				{"B", "C", "M", "P"},
+				{"F", "H", "V", "W", "Y"}, 
+				{"K"}, 
+				{"J", "X"}, 
+				{"Q", "Z"}
+				};
+		
+		
+		String arr[] = string.toUpperCase().split("");
+		
+		// Use nested for loops to iterate through the Arrays and use counter to keep track of score
+		for (int i = 0; i < arr.length; i++) {
+			
+			for (int k = 0; k < letters.length; k++) {
+				
+				for (int j = 0; j < letters[k].length; j++) {
+					if (arr[i].equals(letters[k][j]) && k == 0) {
+						counter++;
+					}else if (arr[i].equals(letters[k][j]) && k == 1) {
+						counter += 2;
+					}else if (arr[i].equals(letters[k][j]) && k == 2) {
+						counter += 3;
+					}else if (arr[i].equals(letters[k][j]) && k == 3) {
+						counter += 4;
+					}else if (arr[i].equals(letters[k][j]) && k == 4) {
+						counter += 5;
+					}else if (arr[i].equals(letters[k][j]) && k == 5) {
+						counter += 8;
+					}else if (arr[i].equals(letters[k][j]) && k == 6) {
+						counter += 10;
+					}
+				
+				}
+			}
+		}
+		return counter;
 	}
 
 	/**
