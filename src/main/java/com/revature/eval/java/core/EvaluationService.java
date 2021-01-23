@@ -4,6 +4,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -594,8 +595,35 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		return null;
+		String regex = "\\s+|-+|\\.+|\\(+|\\)+|\\++";
+		String regexTwo = "[0-9]";
+		String correctPhone = string.replaceAll(regex,"");
+		
+		String arr[] = correctPhone.split("");
+		
+		for (int k = 0; k < arr.length; k++) {
+			if (!arr[k].matches(regexTwo)) {
+				throw new IllegalArgumentException("Only Numbers");
+			}
+		}
+		
+		List<String> numbers = new ArrayList<String>();
+		
+		 if (arr.length == 11) {
+			for (int i = 1; i < arr.length; i++) {
+				numbers.add(arr[i]);
+			}
+		}else if (arr.length == 10){
+			for (int j = 0; j < arr.length; j++) {
+				numbers.add(arr[j]);
+			}
+		}else {
+			throw new IllegalArgumentException("Number too long or too short");
+		}
+		return (String.join("", numbers));
+		
 	}
+	
 
 	/**
 	 * 15. Recurring Word Counter
@@ -607,7 +635,36 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
+		
+		// Use Regular Expressions to adjust for conditions
+		String newString = string.replaceAll("\\,+", " ").replaceAll("\\n+", "");
+		
+		// Create Arrays to iterate through
+		String arr[] = newString.split(" ");
+		int counter[] = new int[arr.length];
+		
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr.length; j++) {
+				if (arr[i].matches(arr[j])) {
+					counter[i]++;
+				}
+			}
+		}
+		
+		for (int k = 0; k < arr.length; k++) {
+			for (int d = 1; d < arr.length; d++) {
+			if (counter[k] == d) {
+				wordCount.put(arr[k], d);		
+			
+			}
+		
+			}
+			wordCount.put(arr[0], 1);
+		
+		}	
+	return (wordCount);
+	
 	}
 
 	/**
@@ -625,8 +682,29 @@ public class EvaluationService {
 	 * a number is an Armstrong number.
 	 */
 	public boolean isArmstrongNumber(int input) {
-		return false;
-	}
+String strInput = Integer.toString(input);
+		
+		String[] arr = strInput.split("");
+		
+		int exponent = arr.length;
+		
+		int newArr[] = new int[arr.length];
+		
+		for (int i = 0; i < arr.length; i++) {
+			newArr[i] = (int) Math.pow(Integer.parseInt(arr[i]), exponent);
+		}
+		
+		int armstrongCheck = 0;
+		
+		for (int j = 0; j < newArr.length; j++) {
+			armstrongCheck += newArr[j];
+		}
+		
+		return (armstrongCheck == input);
+		
+		
+		
+		}
 
 	/**
 	 * 17. Prime Factors
@@ -638,8 +716,64 @@ public class EvaluationService {
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		// I am sorry this code is so bad looking. I am still thinking of ways
+		// to revise it.
+		long copy = l;
+		
+		List<Long> arr = new ArrayList<Long>();
+		List<Long> arrTwo = new ArrayList<Long>();
+		
+		while (copy > 0) {
+			arr.add(copy);
+			copy--;
+		}
+		
+		for (Long n : arr) {
+			if (l % n == 0) {
+				arrTwo.add(n);
+			}
+		}
+		
+		
+		long[] counter = new long[arrTwo.size()];
+		
+		
+		for (int i = 0; i < arrTwo.size(); i++) {
+			for (int j = 0; j < arr.size(); j++) {
+				if (arrTwo.get(i) % arr.get(j) == 0) {
+					counter[i]++;
+					
+				}
+			}
+		}
+		
+		List<Long> arrThree = new ArrayList<Long>();
+		
+		for (int k = 0; k < arrTwo.size(); k++) {
+			if (counter[k] == 2) {
+				arrThree.add(arrTwo.get(k));
+			}
+		}
+		
+		List<Long> arrFour = new ArrayList<Long>();
+		
+
+		int g = arrThree.size() - 1;
+		
+		while (l != 1 && g >= 0) {
+			arrFour.add(arrThree.get(g));
+			l = l / arrThree.get(g);
+			if (l % arrThree.get(g) != 0) {
+			g--;
+			
+			}			
+			}
+	
+		return arrFour;
+		
+	
 	}
+	
 
 	/**
 	 * 18. Calculate Nth Prime
@@ -654,8 +788,33 @@ public class EvaluationService {
 	 */
 	public int calculateNthPrime(int k) {
 		// TODO Write an implementation for this method declaration
-		return 0;
-	}
+		int b = 2;
+		int counter;
+		
+		List<Integer> arr = new ArrayList<Integer>();
+		
+		if (k <= 0) {
+			throw new IllegalArgumentException("Must be greater than zero");
+		}
+		
+		while (arr.size() < k) {
+			counter = 0;
+			for (int i = 2; i <= b/2; i++) {
+				if (b % i == 0) {
+					counter = 1;
+					
+				} 
+				
+			}
+			if (counter == 0) {
+				arr.add(b);
+				
+			}
+			b++;
+			}
+		
+		return (arr.get(arr.size() - 1));
+		}
 
 	/**
 	 * 19. Pangram
@@ -671,7 +830,23 @@ public class EvaluationService {
 	 */
 	public boolean isPangram(String string) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		int counter = 0;
+		String[] alphabet = {
+				"a","b","c","d","e","f","g","h","i","j","k","l","m",
+				"n","o","p","q","r","s","t","u","v","w","x","y","z"
+				};
+		
+		
+		for (int i = 0; i < alphabet.length; i++) {
+			if (string.indexOf(alphabet[i]) < 0) {
+				counter++;
+			}
+		}
+		
+		return(counter == 0);
+		
+	
+
 	}
 
 	/**
