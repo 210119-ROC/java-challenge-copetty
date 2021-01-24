@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 
 public class EvaluationService {
@@ -27,7 +28,7 @@ public class EvaluationService {
 	static class SpeedConverter {
 
 		public static long toMilesPerHour(double kilometersPerHour) {
-			// TODO Write an implementation for this method declaration
+			
 			if (kilometersPerHour < 0) {
 				return -1;
 			}else {
@@ -112,7 +113,7 @@ public class EvaluationService {
 	 * If the hourOfDay parameter is less than 0 or greater than 23, return false.
 	 */
 	public boolean shouldWakeUp(boolean isBarking, int hourOfDay) {
-		// TODO Write an implementation for this method declaration
+		
 		
 		if (hourOfDay < 0 || hourOfDay > 23) {
 			return false;
@@ -140,7 +141,7 @@ public class EvaluationService {
 	
 	
 	public boolean areEqualByThreeDecimalPlaces(double firstNum, double secondNum) {
-		// TODO Write an implementation for this method declaration
+		
 		
 		// Use DecimalFormat and set it to round down to determine if the values are equal up to three decimal places
 		DecimalFormat df = new DecimalFormat("#.000");
@@ -175,7 +176,7 @@ public class EvaluationService {
 	static class TeenNumberChecker {
 
 		public static boolean hasTeen(int x, int y, int z) {
-			// TODO Write an implementation for this method declaration
+			
 			if (isTeen(x) == true || isTeen(y) == true || isTeen(z) == true) {
 				return true;
 			}else {
@@ -215,7 +216,7 @@ public class EvaluationService {
 	 * ZZ represents the calculated days.
 	 */
 	public String printYearsAndDays(long minutes) {
-		// TODO Write an implementation for this method declaration
+		
 		if (minutes < 0) {
 			return ("Invalid Value");
 		}else {
@@ -237,7 +238,7 @@ public class EvaluationService {
 	 * statement or switch statement whatever is easier for you.
 	 */
 	public String printNumberInWord(int number) {
-		// TODO Write an implementation for this method declaration
+		
 		// using a switch statement
 		
 		switch(number) {
@@ -287,7 +288,7 @@ public class EvaluationService {
 	 * and there is no resulting remainder.
 	 */
 	public int getGreatestCommonDivisor(int first, int second) {
-		// TODO Write an implementation for this method declaration
+		
 		// First check if values are less than 10
 		if (first < 10 || second < 10) {
 			return (-1);
@@ -349,7 +350,7 @@ public class EvaluationService {
 	 * invalid value.
 	 */
 	public int sumFirstAndLastDigit(int num) {
-		// TODO Write an implementation for this method declaration
+		
 		if (num < 0) {
 			return (-1);
 		}else {
@@ -372,7 +373,7 @@ public class EvaluationService {
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
 	 */
 	public String reverse(String string) {
-		// TODO Write an implementation for this method declaration
+		
 		// Initialize List and String Array then iterate through Array and add to List
 		List<String> reversedString = new ArrayList<String>();
 		String arr[] = string.split("");
@@ -392,7 +393,7 @@ public class EvaluationService {
 	 * long name like Portable Network Graphics to its acronym (PNG).
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
+		
 		// Create an Array List and a Regular Expression that matches whitespace and hyphens
 		List<String> finAcronym = new ArrayList<String>();
 		String regex = "\s+|-+";
@@ -465,7 +466,7 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
+			
 			if (getSideOne() == getSideTwo() && getSideTwo() == getSideThree()) {
 				return true;
 			}else {
@@ -474,7 +475,7 @@ public class EvaluationService {
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
+			
 			double a = getSideOne();
 			double b = getSideTwo();
 			double c = getSideThree();
@@ -491,7 +492,7 @@ public class EvaluationService {
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
+			
 			if (getSideOne() != getSideTwo() && getSideTwo() != getSideThree() && getSideOne() != getSideThree()) {
 				return true;
 			}else {
@@ -516,7 +517,7 @@ public class EvaluationService {
 	 * 3 + 2*1 + 2*3 + 2 + 1 = 3 + 2 + 6 + 3 = 5 + 9 = 14
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
+		
 		// create score counter and create one Array for the possible values and another from the given String
 		int counter = 0;
 		
@@ -634,7 +635,7 @@ public class EvaluationService {
 	 * free: 1
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
+		
 HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
 		
 		// Use Regular Expressions to adjust for conditions
@@ -715,7 +716,7 @@ String strInput = Integer.toString(input);
 	 * Note that 1 is not a prime number.
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
+		
 		// I am sorry this code is so bad looking. I am still thinking of ways
 		// to revise it.
 		long copy = l;
@@ -787,7 +788,7 @@ String strInput = Integer.toString(input);
 	 * numbers, pretend they don't exist and implement them yourself.
 	 */
 	public int calculateNthPrime(int k) {
-		// TODO Write an implementation for this method declaration
+		
 		int b = 2;
 		int counter;
 		
@@ -829,7 +830,7 @@ String strInput = Integer.toString(input);
 	 * insensitive. Input will not contain non-ASCII symbols.
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
+		
 		int counter = 0;
 		String[] alphabet = {
 				"a","b","c","d","e","f","g","h","i","j","k","l","m",
@@ -861,7 +862,25 @@ String strInput = Integer.toString(input);
 	 * The sum of these multiples is 78.
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		return 0;
+		List<Integer> arr = new ArrayList<Integer>();
+		
+		
+		for (int j = 0; j < set.length; j++) {
+			int c = 0;
+			for (int k = 1; k < i; k++) {
+				c = (set[j] * k);
+				if (c < i && arr.indexOf(c) < 0) {	
+					arr.add(c);		
+				}
+			}
+		}
+		int total = 0;
+		
+		for (int a = 0; a < arr.size(); a++) {
+			total += arr.get(a);		
+			}
+		
+		return (total);
 	}
 	
 	/**
@@ -875,7 +894,17 @@ String strInput = Integer.toString(input);
 	 */
 	
 	public int[] threeLuckyNumbers() {
-		return null;
+		Random magicNumber = new Random(); 
+        
+        int[] slotArray = new int[3];
+        
+        for (int i = 0; i < slotArray.length; i++) {
+        	if (slotArray[i] == 0) {
+        		slotArray[i] = magicNumber.nextInt(100);
+        	}
+        }
+        
+        return slotArray;
 	}
 	
 	/*
@@ -889,6 +918,23 @@ String strInput = Integer.toString(input);
 	 */
 	
 	public int guessingGame(int x, int y) {
-		return 0;
+Random randomize = new Random();
+		
+		int randNum = randomize.nextInt(y);
+		
+		int c = 0;
+		int[] randArr = new int[1];
+		
+		for (int i = 0; i < randArr.length; i++) {
+			if (randNum >= x) {
+				c = randNum;
+				
+			}else {
+				c = randNum + x;
+			}
+		}
+		
+		return (c);
+		}
 	}
-}
+
