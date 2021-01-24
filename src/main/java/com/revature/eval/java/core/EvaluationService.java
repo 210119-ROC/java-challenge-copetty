@@ -923,18 +923,15 @@ Random randomize = new Random();
 		int randNum = randomize.nextInt(y);
 		
 		int c = 0;
-		int[] randArr = new int[1];
-		
-		for (int i = 0; i < randArr.length; i++) {
-			if (randNum >= x) {
+	
+		if (randNum >= x) {
 				c = randNum;
 				
-			}else {
+		}else {
 				c = randNum + x;
-			}
 		}
 		
 		return (c);
 		}
-	}
+		}
 
